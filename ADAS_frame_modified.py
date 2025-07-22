@@ -36,7 +36,7 @@ def assign(signal, payload, new_value):
             print(f"Valid payload is : {valid_payload}")
         else:
             print("Invalid pdu")
-            #continue
+
         i+=12
 
     if signal == "LCA_OverrideDisplay" and len(valid_payload)>=3:
@@ -46,15 +46,10 @@ def assign(signal, payload, new_value):
     else:
         start_index, target_payload = valid_payload[0]
 
-    pdus = target_payload[4:12]
-    pdu_bits = ''.join(pdus)
     byte_index, bit_offset, size = signal_map[signal]
     bit_offset = 7 - bit_offset
 
-    abs_bit_index = byte_index * 8 + bit_offset
 
-
-    bits_payload = ''.join(bits_string)
     bits_payload_list = list(''.join(bits_string))
 
     payload_start = (start_index + 4) * 8
@@ -70,6 +65,6 @@ def assign(signal, payload, new_value):
     return new_hex_payload
 
 
-result = assign("DW_FollowUpTimeDisplay","00 06 02 08 80 00 00 00 00 00 00 00 00 05 D0 08 FF 60 00 00 02 00 00 00 00 06 01 08 80 00 00 00 00 00 00 00 00 00 10 C7 77 8A 70 AB AF 88 2A 8C 00 06 02 08 40 00 00 10 00 00 00 00 00 05 D0 08 21 20 00 00 02 00 00 00 00 06 01 08 80 00 00 00 00 00 00 00 00 00 00 11 29 FB 84 33 1D E5 5E 9D"
- ,45)
+result = assign("LCA_OverrideDisplay","00 06 02 08 80 00 00 00 00 00 00 00 00 05 D0 08 FF 60 00 00 02 00 00 00 00 06 01 08 80 00 00 00 00 00 00 00 00 00 10 C7 77 8A 70 AB AF 88 2A 8C 00 06 02 08 40 00 00 10 00 00 00 00 00 05 D0 08 21 20 00 00 02 00 00 00 00 06 01 08 80 00 00 00 00 00 00 00 00 00 00 11 29 FB 84 33 1D E5 5E 9D"
+ ,1)
 print(result)
