@@ -2,6 +2,7 @@ import requests
 baseurl = 'https://rickandmortyapi.com/api/'
 endpoint = 'character'
 
+
 def main_request(baseurl, endpoint):
     r = requests.get(baseurl + endpoint)
     return r.json()
@@ -95,14 +96,13 @@ def species_listing(response):
                 if 22 <= episode['id'] <= 31:
                      species_list += [character]
                      name_added_once +=[name_added_once]
-                print(f"Species name : {name} and species type:{types}")
+                #print(f"Species name : {name} and species type:{types}")
                 break
-        else:
-             print(f"Species :{species} and type: {types}")
+        #else:
+             #print(f"Species :{species} and type: {types}")
     return species_list
 data = main_request(baseurl, endpoint)
-species_listing(data)
-
+print(species_listing(data))
 
 
 
